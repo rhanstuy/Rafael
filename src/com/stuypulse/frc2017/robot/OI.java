@@ -1,13 +1,14 @@
 package com.stuypulse.frc2017.robot;
 
-import com.stuypulse.frc2017.robot.commands.BlenderRunWithUnjammingCommand;
-import com.stuypulse.frc2017.robot.commands.BlenderStopCommand;
+//import com.stuypulse.frc2017.robot.commands.BlenderRunWithUnjammingCommand;
+//import com.stuypulse.frc2017.robot.commands.BlenderStopCommand;
 import com.stuypulse.frc2017.robot.commands.DriveTrainHighGearCommand;
 import com.stuypulse.frc2017.robot.commands.DriveTrainLowGearCommand;
-import com.stuypulse.frc2017.robot.commands.GearPusherPushGearCommand;
-import com.stuypulse.frc2017.robot.commands.GearPusherRetractGearCommand;
-import com.stuypulse.frc2017.robot.commands.GearTrapReleaseGearCommand;
-import com.stuypulse.frc2017.robot.commands.WinchStartMotorCommand;
+import com.stuypulse.frc2017.robot.commands.DrivetrainResetEncodersCommand;
+//import com.stuypulse.frc2017.robot.commands.GearPusherPushGearCommand;
+//import com.stuypulse.frc2017.robot.commands.GearPusherRetractGearCommand;
+//import com.stuypulse.frc2017.robot.commands.GearTrapReleaseGearCommand;
+//import com.stuypulse.frc2017.robot.commands.WinchStartMotorCommand;
 import com.stuypulse.frc2017.util.Gamepad;
 
 /**
@@ -54,13 +55,15 @@ public class OI {
 		//The right bumper is being used to gearshift
 		driverPad.getRightBumper().whenPressed(new DriveTrainLowGearCommand());
 		driverPad.getRightBumper().whenReleased(new DriveTrainHighGearCommand());
+		driverPad.getBottomButton().whenPressed(new DrivetrainResetEncodersCommand());
 		
-		//OperatorPad Bindings
+		
+		/*//OperatorPad Bindings
 		operatorPad.getBottomButton().whileHeld(new GearTrapReleaseGearCommand());
 		operatorPad.getLeftButton().whenPressed(new BlenderRunWithUnjammingCommand());
 		operatorPad.getTopButton().whileHeld(new WinchStartMotorCommand());
 		operatorPad.getRightButton().whenPressed(new BlenderStopCommand());
 		operatorPad.getDPadUp().whenPressed(new GearPusherPushGearCommand());
 		operatorPad.getDPadDown().whenPressed(new GearPusherRetractGearCommand());
-	}
+	*/}
 }

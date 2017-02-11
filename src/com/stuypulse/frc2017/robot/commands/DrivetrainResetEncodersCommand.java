@@ -7,17 +7,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class GearTrapTrapGearCommand extends Command {
+public class DrivetrainResetEncodersCommand extends Command {
 
-    public GearTrapTrapGearCommand() {
+    public DrivetrainResetEncodersCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.geartrap);
+        requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.geartrap.trap();
+        Robot.drivetrain.resetEncoders();
+        
     }
 
     // Called repeatedly when this Command is scheduled to run

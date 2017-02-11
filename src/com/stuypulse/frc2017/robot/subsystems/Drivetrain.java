@@ -1,6 +1,7 @@
 package com.stuypulse.frc2017.robot.subsystems;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 import com.stuypulse.frc2017.robot.RobotMap;
 import com.stuypulse.frc2017.robot.commands.DrivetrainPiotrDriveCommand;
@@ -40,9 +41,9 @@ public class Drivetrain extends Subsystem {
     // here. Call these from Commands.
 
     public Drivetrain() {
-    	leftTopMotor = new CANTalon(RobotMap.LEFT_TOP_MOTOR_PORT);
+        leftTopMotor = new CANTalon(RobotMap.LEFT_BOTTOM_MOTOR_PORT);
     	rightTopMotor = new CANTalon(RobotMap.RIGHT_TOP_MOTOR_PORT);
-    	leftBottomMotor = new CANTalon(RobotMap.LEFT_BOTTOM_MOTOR_PORT);
+    	leftBottomMotor = new CANTalon(RobotMap.LEFT_TOP_MOTOR_PORT);
     	rightBottomMotor = new CANTalon(RobotMap.RIGHT_BOTTOM_MOTOR_PORT);
 
         leftTopMotor.enableBrakeMode(true);
@@ -50,7 +51,11 @@ public class Drivetrain extends Subsystem {
         leftBottomMotor.enableBrakeMode(true);
         rightBottomMotor.enableBrakeMode(true);
 
-    	gearShift = new Solenoid(RobotMap.GEAR_SHIFT_SOLENOID_PORT);
+    	leftTopMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+    	rightTopMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+        resetEncoders();
+
+        gearShift = new Solenoid(RobotMap.GEAR_SHIFT_SOLENOID_PORT);
 
     	shifted = false;
     	
@@ -86,8 +91,12 @@ public class Drivetrain extends Subsystem {
     }
     
     public void resetEncoders() {
-    	leftTopMotor.setEncPosition(0);
-    	rightTopMotor.setEncPosition(0);
+    	leftTopMotor.reset();
+        rightTopMotor.reset();
+        leftTopMotor.enable();
+        rightTopMotor.enable();
+        leftTopMotor.setPosition(0);
+    	rightTopMotor.setPosition(0);
     }
     
     public double encoderDistance() {
@@ -95,11 +104,11 @@ public class Drivetrain extends Subsystem {
     }
 
     public double leftEncoderDistance() {
-    	return Math.abs(leftTopMotor.getEncPosition() * RobotMap.DRIVETRAIN_ENCODERS_INCHES_PER_PULSE);
+    	return Math.abs(leftTopMotor.getPosition() * RobotMap.DRIVETRAIN_ENCODERS_INCHES_PER_PULSE);
     }
 
     public double rightEncoderDistance() {
-    	return Math.abs(rightTopMotor.getEncPosition() * RobotMap.DRIVETRAIN_ENCODERS_INCHES_PER_PULSE);
+    	return Math.abs(rightTopMotor.getPosition() * RobotMap.DRIVETRAIN_ENCODERS_INCHES_PER_PULSE);
     }
 
     //Sets the solenoid to a shifted state manually
