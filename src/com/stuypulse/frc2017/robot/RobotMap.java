@@ -39,6 +39,8 @@ public interface RobotMap {
     int RIGHT_TOP_MOTOR_PORT = 3;
     int RIGHT_BOTTOM_MOTOR_PORT = 4;
 
+    double DRIVETRAIN_VOLTAGE_RAMP_RATE = -1;
+    
     int ENCODER_PULSES_PER_REVOLUTION = 1024; // TODO: verify value and specify which encoder in name
     double DRIVETRAIN_ENCODERS_INCHES_PER_PULSE = 23.56;
     // We use BLENDER_ENCODER_DEGREES_PER_PULSE as the encoder's distance-per-pulse.
