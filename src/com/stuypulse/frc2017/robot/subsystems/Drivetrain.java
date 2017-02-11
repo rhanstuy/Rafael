@@ -72,6 +72,13 @@ public class Drivetrain extends Subsystem {
         setDefaultCommand(new DrivetrainTankDriveCommand());
     }
 
+    public void setDrivetrainMotorRampRate(double rampRate) {
+        leftTopMotor.setVoltageRampRate(rampRate);
+        rightTopMotor.setVoltageRampRate(rampRate);
+        leftBottomMotor.setVoltageRampRate(rampRate);
+        rightBottomMotor.setVoltageRampRate(rampRate);
+    }
+    
     public void tankDrive(double left, double right) {
     	robotDrive.tankDrive(left, right);
     }

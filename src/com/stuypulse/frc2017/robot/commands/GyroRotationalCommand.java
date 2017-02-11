@@ -3,6 +3,7 @@ package com.stuypulse.frc2017.robot.commands;
 import static com.stuypulse.frc2017.robot.CVConstants.CAMERA_VIEWING_ANGLE_X;
 
 import com.stuypulse.frc2017.robot.Robot;
+import com.stuypulse.frc2017.robot.RobotMap;
 import com.stuypulse.frc2017.robot.commands.auton.AutoMovementCommand;
 import com.stuypulse.frc2017.util.BoolBox;
 
@@ -70,6 +71,7 @@ public abstract class GyroRotationalCommand extends AutoMovementCommand {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        Robot.drivetrain.setDrivetrainMotorRampRate(RobotMap.DRIVETRAIN_VOLTAGE_RAMP_RATE);
         try {
             // If we received a forceStoppedBox controller and it is already
             // true, stop immediately.
@@ -115,6 +117,7 @@ public abstract class GyroRotationalCommand extends AutoMovementCommand {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        
         try {
             super.execute();
             if (!getForceStopped()) {
