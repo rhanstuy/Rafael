@@ -1,6 +1,7 @@
 package com.stuypulse.frc2017.robot.commands;
 
 import com.stuypulse.frc2017.robot.Robot;
+import com.stuypulse.frc2017.robot.RobotMap;
 import com.stuypulse.frc2017.robot.commands.auton.AutoMovementCommand;
 import com.stuypulse.frc2017.util.BoolBox;
 
@@ -27,7 +28,8 @@ public abstract class EncoderDrivingCommand extends AutoMovementCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        try {
+        Robot.drivetrain.setDrivetrainMotorRampRate(RobotMap.DRIVETRAIN_ENCODER_DRIVE_COMMAND_VOLTAGE_RAMP_RATE);
+    	try {
             if (externallyStopped()) {
                 return;
             }
@@ -76,7 +78,8 @@ public abstract class EncoderDrivingCommand extends AutoMovementCommand {
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.drivetrain.stop();
+        Robot.drivetrain.setDefaultDrivetrainRampRate();
+    	Robot.drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same

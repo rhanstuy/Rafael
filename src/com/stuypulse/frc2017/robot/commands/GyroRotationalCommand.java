@@ -183,6 +183,7 @@ public abstract class GyroRotationalCommand extends AutoMovementCommand {
     // Called once after isFinished returns true
     protected void end() {
         Robot.drivetrain.stop();
+        Robot.drivetrain.setDefaultDrivetrainRampRate();
         System.out.println("ENDED");
         onEnd();
     }

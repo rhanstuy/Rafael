@@ -79,6 +79,13 @@ public class Drivetrain extends Subsystem {
         rightBottomMotor.setVoltageRampRate(rampRate);
     }
     
+    public void setDefaultDrivetrainRampRate() {
+    	leftTopMotor.setVoltageRampRate(0);
+        rightTopMotor.setVoltageRampRate(0);
+        leftBottomMotor.setVoltageRampRate(0);
+        rightBottomMotor.setVoltageRampRate(0);
+    }
+    
     public void tankDrive(double left, double right) {
     	robotDrive.tankDrive(left, right);
     }
