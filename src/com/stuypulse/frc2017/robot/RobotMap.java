@@ -92,6 +92,11 @@ public interface RobotMap {
 
     // Shooter
     double SHOOTER_IDEAL_SPEED = -1.0; // TODO: set shooter speed
+    //TODO:Set the PIDF values
+    double SHOOTER_P = 0.0;
+    double SHOOTER_I = 0.0;
+    double SHOOTER_D = 0.0;
+    double SHOOTER_F = 0.0;
 
     // Winch
     double WINCH_MOTOR_SPEED = 1.0;
